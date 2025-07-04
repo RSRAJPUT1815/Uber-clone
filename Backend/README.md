@@ -151,3 +151,71 @@ Authorization: Bearer <jwt_token>
 
 - Requires a valid JWT token in the Authorization header.
 - After logout, the token will be invalidated and can't be used for future requests.
+
+# Captain Routes
+
+## POST `/captains/register`
+
+Register a new captain in the system.
+
+### Request Body
+
+```json
+{
+  "fullname": {
+    "firstname": "string (min 3 chars, required)",
+    "lastname": "string (optional)"
+  },
+  "email": "string (valid email, required)",
+  "password": "string (min 6 chars, required)",
+  "vehicle": {
+    "color": "string (min 3 chars, required)",
+    "plate": "string (min 3 chars, required)",
+    "capacity": "number (min 1, required)",
+    "vehicleType": "string (enum: 'car', 'bike', 'auto-rickshaw', required)"
+  }
+}
+```
+
+#### Example
+
+```json
+{
+  "fullname": {
+    "firstname": "Mike",
+    "lastname": "Johnson"
+  },
+  "email": "mike.j@example.com",
+  "password": "securepass123",
+  "vehicle": {
+    "color": "Black",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+### Responses
+
+- **201 Created**
+  - Captain registered successfully.
+  - Returns: `{ "token": "jwt_token", "captain": { ...captainData } }`
+
+- **400 Bad Request**
+  - Validation errors (invalid fields).
+  - Returns: `{ "errors": [ ... ] }`
+
+- **401 Conflict**
+  - Email already registered.
+  - Returns: `{ "message": "Email already exists" }`
+
+- **500 Internal Server Error**
+  - Unexpected server error.
+
+### Notes
+
+- All required fields must be provided.
+- The password is securely hashed before storage.
+- Vehicle type must be one of: 'car', 'bike', or 'auto-rickshaw'.
+- Capacity must be a positive integer.
