@@ -160,38 +160,19 @@ Register a new captain in the system.
 
 ### Request Body
 
-```json
+```jsonc
 {
   "fullname": {
-    "firstname": "string (min 3 chars, required)",
-    "lastname": "string (optional)"
+    "firstname": "string", // min 3 chars, required
+    "lastname": "string"   // optional
   },
-  "email": "string (valid email, required)",
-  "password": "string (min 6 chars, required)",
+  "email": "string",    // valid email format, required
+  "password": "string", // min 6 chars, required
   "vehicle": {
-    "color": "string (min 3 chars, required)",
-    "plate": "string (min 3 chars, required)",
-    "capacity": "number (min 1, required)",
-    "vehicleType": "string (enum: 'car', 'bike', 'auto-rickshaw', required)"
-  }
-}
-```
-
-#### Example
-
-```json
-{
-  "fullname": {
-    "firstname": "Mike",
-    "lastname": "Johnson"
-  },
-  "email": "mike.j@example.com",
-  "password": "securepass123",
-  "vehicle": {
-    "color": "Black",
-    "plate": "ABC123",
-    "capacity": 4,
-    "vehicleType": "car"
+    "color": "string",      // min 3 chars, required
+    "plate": "string",      // min 3 chars, required
+    "capacity": "number",   // min 1, required
+    "vehicleType": "string" // must be 'car', 'bike', or 'auto-rickshaw'
   }
 }
 ```
@@ -199,23 +180,70 @@ Register a new captain in the system.
 ### Responses
 
 - **201 Created**
-  - Captain registered successfully.
+  - Captain registered successfully
   - Returns: `{ "token": "jwt_token", "captain": { ...captainData } }`
 
 - **400 Bad Request**
-  - Validation errors (invalid fields).
+  - Validation errors
   - Returns: `{ "errors": [ ... ] }`
 
 - **401 Conflict**
-  - Email already registered.
-  - Returns: `{ "message": "Email already exists" }`
+  - Returns: `{ "message": "Captain already exists" }`
 
-- **500 Internal Server Error**
-  - Unexpected server error.
+## POST `/captains/login`
 
-### Notes
+Authenticate a captain.
 
-- All required fields must be provided.
-- The password is securely hashed before storage.
-- Vehicle type must be one of: 'car', 'bike', or 'auto-rickshaw'.
-- Capacity must be a positive integer.
+### Request Body
+
+```jsonc
+{
+  "email": "string",    // valid email format, required
+  "password": "string"  // min 6 chars, required
+}
+```
+
+### Responses
+
+- **200 OK**
+  - Returns: `{ "token": "jwt_token", "captain": { ...captainData } }`
+
+- **400 Bad Request**
+  - Returns: `{ "errors": [ ... ] }`
+
+- **401 Unauthorized**
+  - Returns: `{ "message": "Invalid email or password" }`
+
+## GET `/captains/profile`
+
+Get captain's profile information.
+
+### Headers
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Responses
+
+- **200 OK**
+  - Returns: `{ ...captainData }`
+
+- **401 Unauthorized**
+  - Returns: `{ "message": "Authentication required" }`
+
+## GET `/captains/logout`
+
+Logout captain and invalidate token.
+
+### Headers
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Responses
+
+- **200 OK**
+  - Returns: `{ "message": "Logged out successfully" }`
+
+- **401 Unauthorized**
+  - Returns: `{ "message": "Authentication required" }`
