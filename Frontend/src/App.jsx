@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route,Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import UserLogin from './pages/UserLogin'
 import UserSingup from './pages/UserSingup'
@@ -7,11 +7,14 @@ import UserSingup from './pages/UserSingup'
 
 const App = () => {
   return (
-    <div className='bg-gray-100'>
-      hello world      
+    <div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<UserLogin />} />
+        <Route path='/signup' element={<UserSingup />} />
+      </Routes>
     </div>
   )
 }
 
 export default App
-   
