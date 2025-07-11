@@ -3,7 +3,7 @@ import React from 'react'
 const CaptainSingup = () => {
   return (
     <div>
-      
+      ikjhjkhgjkbjhg
     </div>
   )
 }
