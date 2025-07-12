@@ -16,12 +16,13 @@ const UserLogin = () => {
     )
     setEmail('');
     setPassword('');
+    
   }
 
   return (
     <div className='p-7 flex flex-col h-screen justify-between'>
       <div>
-        <img src="./Uber-logo.png" alt="Uber-logo" className='w-16 mb-8' />
+        <img src="./uber.png" alt="Uber-logo" className='w-16 mb-8' />
         <form onSubmit={(e)=>{
           submitHandler(e);
 
@@ -39,7 +40,7 @@ const UserLogin = () => {
         </form>
       </div>
       <div>
-        <Link to={"/captaion-login"} className='bg-[#10b461] flex items-center justify-center w-full text-white font-semibold mb-7 rounded text-lg py-2'>Sign in as Captain</Link>
+        <Link to={"/captaion-login"} className='bg-[#10b461] flex items-center justify-center w-full text-white font-semibold mb-7 rounded text-lg py-2'>Login in as Captain</Link>
       </div>
     </div>
   )
