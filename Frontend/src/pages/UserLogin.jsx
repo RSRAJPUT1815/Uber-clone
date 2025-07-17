@@ -50,7 +50,7 @@ const UserLogin = () => {
         </form>
       </div>
       <div>
-        <Link to={"/captaion-login"} className='bg-[#10b461] flex items-center justify-center w-full text-white font-semibold mb-7 rounded text-lg py-2'>Login in as Captain</Link>
+        <Link to={"/captain-login"} className='bg-[#10b461] flex items-center justify-center w-full text-white font-semibold mb-7 rounded text-lg py-2'>Login in as Captain</Link>
       </div>
     </div>
   )
