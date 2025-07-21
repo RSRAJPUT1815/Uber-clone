@@ -36,7 +36,7 @@ const LocationSearchPanel = () => {
             <div className="space-y-4">
 
                 {locations.map((loc, index) => (
-                    <div key={index} className="flex gap-4 items-start mt-4">
+                    <div key={index} className="flex gap-4 border-2 p-3 rounded-xl active:border-black items-start mt-4">
                         <h5 className="text-2xl bg-[#eee] p-3 rounded-full">
                             <i className="ri-map-pin-line"></i>
                         </h5>
