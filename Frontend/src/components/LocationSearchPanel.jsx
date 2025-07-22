@@ -1,6 +1,7 @@
 import React from 'react'
 
-const LocationSearchPanel = () => {
+const LocationSearchPanel = (props) => {
+    
     const locations = [
         {
             title: 'Kempegowda International Airport...',
@@ -25,6 +26,7 @@ const LocationSearchPanel = () => {
     ];
     return (
         <div className="w-full h-screen bg-white p-4 space-y-4">
+            
             {/* Header */}
             <div className="flex justify-between items-center">
                 <button className="border border-gray-400 px-4 py-2 rounded-md text-sm text-gray-700">
@@ -36,7 +38,7 @@ const LocationSearchPanel = () => {
             <div className="space-y-4">
 
                 {locations.map((loc, index) => (
-                    <div key={index} className="flex gap-4 border-2 p-3 rounded-xl active:border-black items-start mt-4">
+                    <div onClick={()=>(props.setVehilePanal(true),props.setPanelOpen(false))} key={index} className="flex gap-4 border-2 p-3 rounded-xl active:border-black items-start mt-4">
                         <h5 className="text-2xl bg-[#eee] p-3 rounded-full">
                             <i className="ri-map-pin-line"></i>
                         </h5>

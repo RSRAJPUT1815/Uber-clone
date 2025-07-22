@@ -3,12 +3,22 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
 import 'remixicon/fonts/remixicon.css'
 import LocationSearchPanel from '../components/LocationSearchPanel';
+import VehilePanal from '../components/VehilePanal';
+import SelectedVehicle from '../components/SelectedVehicle';
+import WaitingForDriver from '../components/WaitingForDriver';
+import LookingForDriver from '../components/LookingForDriver';
 
 const Home = () => {
   const [pickup, setPickup] = useState('');
   const [destination, setDestination] = useState('');
   const [panelOpen, setPanelOpen] = useState(false);
   const panalRef = useRef(null);
+  const [vehilePanal, setVehilePanal] = useState(false);
+  const vehilepanalRef = useRef(null)
+  const [SVP, setSVP] = useState(false);
+  const SVPRef = useRef(null)
+  const [LFD, setLFD] = useState(false);
+  const LFDRef = useRef(null)
 
   useGSAP(function () {
     if (panelOpen) {
@@ -22,6 +32,42 @@ const Home = () => {
       });
     }
   }, [panelOpen]);
+  useGSAP(function () {
+    if (vehilePanal) {
+      gsap.to(vehilepanalRef.current, {
+        transform: 'translateY(0)'
+
+      });
+    } else {
+      gsap.to(vehilepanalRef.current, {
+        transform: 'translateY(100%)'
+      });
+    }
+  }, [vehilePanal]);
+  useGSAP(function () {
+    if (SVP) {
+      gsap.to(SVPRef.current, {
+        transform: 'translateY(0)'
+
+      });
+    } else {
+      gsap.to(SVPRef.current, {
+        transform: 'translateY(100%)'
+      });
+    }
+  }, [SVP]);
+  useGSAP(function () {
+    if (LFD) {
+      gsap.to(LFDRef.current, {
+        transform: 'translateY(0)'
+
+      });
+    } else {
+      gsap.to(LFDRef.current, {
+        transform: 'translateY(100%)'
+      });
+    }
+  }, [LFD]);
 
   return (
     <div className='relative h-screen w-screen overflow-hidden'>
@@ -42,38 +88,17 @@ const Home = () => {
           </form>
         </div>
         <div ref={panalRef} className='h-[0%]  bg-white '>
-          <LocationSearchPanel/>
+          <LocationSearchPanel setPanelOpen={setPanelOpen} setVehilePanal={setVehilePanal} />
         </div>
       </div>
-      <div className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
-        <h3 className='text-2xl font-semibold text-black mb-5'>Choose your ride</h3>
-        <div className='flex items-center justify-between mb-2  active:border-black  border-4 rounded-xl  px-4 py-2'>
-          <img src="UberX.webp" alt="ubercar" className='w-28' />
-          <div className='w-44 '>
-            <h4 className='font-semibold text-lg'>UberGO <span><i className="ri-user-fill"></i> 4 </span></h4>
-            <h5 className='font-medium text-sm'>2 min away</h5>
-            <p className='text-xs font-normal text-gray-800'>Affordable , compect rides</p>
-          </div>
-          <h2 className='font-semibold text-xl  '>₹193.20</h2>
-        </div>
-        <div className='flex items-center justify-between mb-2  active:border-black border-4 rounded-xl  px-4 py-2'>
-          <img src="Uber-bike.webp" alt="ubercar" className='w-28' />
-          <div className='w-44 '>
-            <h4 className='font-semibold text-lg'>UberGO <span><i className="ri-user-fill"></i> 1 </span></h4>
-            <h5 className='font-medium text-sm'>3 min away</h5>
-            <p className='text-xs font-normal text-gray-800'>Affordable , motorcycle rides</p>
-          </div>
-          <h2 className='font-semibold text-xl  '>₹66.17</h2>
-        </div>
-        <div className='flex items-center justify-between mb-2  active:border-black border-4 rounded-xl  px-4 py-2'>
-          <img src="Uber-auto.webp" alt="ubercar" className='w-28' />
-          <div className=' w-44'>
-            <h4 className='font-semibold text-lg'>UberGO <span><i className="ri-user-fill"></i> 2 </span></h4>
-            <h5 className='font-medium text-sm'>4 min away</h5>
-            <p className='text-xs font-normal text-gray-800'>Affordable , Auto rides</p>
-          </div>
-          <h2 className='font-semibold text-xl  '>₹186.15</h2>
-        </div>
+      <div ref={vehilepanalRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
+        <VehilePanal setVehilePanal={setVehilePanal} vehilePanal={vehilePanal} setSVP={setSVP} />
+      </div>
+      <div ref={SVPRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
+        <SelectedVehicle setSVP={setSVP} SVP={SVP} setLFD={setLFD} />
+      </div>
+      <div ref={LFDRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
+        <LookingForDriver setLFD={setLFD} LFD={LFD}/>
       </div>
     </div>
   )
