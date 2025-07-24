@@ -1,37 +1,51 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const CaptainHome = () => {
-  return (
-<>
-<div className="min-h-screen bg-gray-100 flex flex-col">
-    <header className="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-gray-800">Captain Dashboard</h1>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-            Logout
-        </button>
-    </header>
-    <main className="flex-grow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="bg-white shadow-md rounded-md p-4">
-                <h2 className="text-lg font-semibold text-gray-800">Current Ride</h2>
-                <p className="text-gray-600 mt-2">No active rides at the moment.</p>
+    return (
+        <>
+            <div className='h-screen  overflow-hidden relative'>
+                <div className='fixed flex justify-between items-center w-full px-4 pt-3' >
+                    <img src="./Uber-logo.png" alt="uber-logo" className='w-16' />
+                    <Link to={"/captain-logout"} className=' bg-white rounded-full p-2 '>
+                        <i className="ri-logout-box-r-line text-2xl font-bold"></i>
+                    </Link>
+                </div>
+                <div className='h-3/5 overflow-hidden'>
+                    <img src="uber-car-map.webp" alt="temp" className=' w-full ' />
+                </div>
+                <div className='h-2/5 p-4'>
+                    <div className='flex items-center justify-between'>
+                        <div className='flex justify-start items-center gap-4'>
+                            <img className='w-24 h-24 rounded-full object-cover ' src="images.jpg" alt="Driver" />
+                            <h4 className='text-lg font-medium'>RSKING</h4>
+                        </div>
+                        <div>
+                            <h4 className='text-xl font-semibold'>₹297.45</h4>
+                            <p className='text-sm  text-gray-400'>Earned</p>
+                        </div>
+                    </div>
+                    <div className='flex items-start bg-gray-100 p-3 mt-6 rounded-xl justify-center gap-5 '>
+                        <div className='text-center'>
+                            <i className=" text-3xl mb-2 font-thin ri-time-line"></i>
+                            <h5  className='text-lg font-semibold'>5.4</h5>
+                            <p className='text-sm text-gray-500'>Hours Online</p>
+                        </div>
+                        <div className='text-center'>
+                            <i className=" text-3xl mb-2 font-thin ri-speed-up-fill"></i>
+                            <h5  className='text-lg font-semibold'>5.4</h5>
+                            <p className='text-sm text-gray-500'>Hours Online</p>
+                        </div>
+                        <div className='text-center'>
+                            <i className=" text-3xl mb-2 font-thin ri-currency-fill"></i>
+                            <h5  className='text-lg font-semibold'>5.4</h5>
+                            <p className='text-sm text-gray-500'>Hours Online</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="bg-white shadow-md rounded-md p-4">
-                <h2 className="text-lg font-semibold text-gray-800">Earnings</h2>
-                <p className="text-gray-600 mt-2">$0.00</p>
-            </div>
-            <div className="bg-white shadow-md rounded-md p-4">
-                <h2 className="text-lg font-semibold text-gray-800">Upcoming Rides</h2>
-                <p className="text-gray-600 mt-2">No upcoming rides scheduled.</p>
-            </div>
-        </div>
-    </main>
-    <footer className="bg-white shadow-md p-4 text-center">
-        <p className="text-gray-600">© 2023 Uber Clone. All rights reserved.</p>
-    </footer>
-</div>
-</>
-  )
+        </>
+    )
 }
 
 export default CaptainHome
