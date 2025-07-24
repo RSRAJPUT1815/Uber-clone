@@ -3,7 +3,7 @@ import React from 'react'
 const SelectedVehicle = (props) => {
     return (
         <div className=''>
-            <h5 className='absolute top-4 right-4 text-3xl' onClick={() => props.setSVP(!props.SVP)}>
+            <h5 className='absolute top-4 right-4 text-3xl' onClick={() => props.setSVP(false)}>
                 <i className="ri-close-circle-line"></i>
             </h5>
             <h3 className='text-2xl font-semibold text-black mb-5'>Confirm your Ride</h3>

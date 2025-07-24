@@ -19,6 +19,8 @@ const Home = () => {
   const SVPRef = useRef(null)
   const [LFD, setLFD] = useState(false);
   const LFDRef = useRef(null)
+  const [WFD, setWFD] = useState(false);
+  const WFDRef = useRef(null)
 
   useGSAP(function () {
     if (panelOpen) {
@@ -68,6 +70,18 @@ const Home = () => {
       });
     }
   }, [LFD]);
+  useGSAP(function () {
+    if (WFD) {
+      gsap.to(WFDRef.current, {
+        transform: 'translateY(0%)'
+
+      });
+    } else {
+      gsap.to(WFDRef.current, {
+        transform: 'translateY(100%)'
+      });
+    }
+  }, [WFDRef]);
 
   return (
     <div className='relative h-screen w-screen overflow-hidden'>
@@ -92,13 +106,16 @@ const Home = () => {
         </div>
       </div>
       <div ref={vehilepanalRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
-        <VehilePanal setVehilePanal={setVehilePanal} vehilePanal={vehilePanal} setSVP={setSVP} />
+        <VehilePanal setVehilePanal={setVehilePanal}  setSVP={setSVP} />
       </div>
       <div ref={SVPRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
-        <SelectedVehicle setSVP={setSVP} SVP={SVP} setLFD={setLFD} />
+        <SelectedVehicle setSVP={setSVP}  setLFD={setLFD} />
       </div>
       <div ref={LFDRef} className='fixed z-10 bottom-0 translate-y-full bg-white  w-full  px-4 py-6 '>
-        <LookingForDriver setLFD={setLFD} LFD={LFD}/>
+        <LookingForDriver setLFD={setLFD} />
+      </div>
+      <div ref={WFDRef}  className='fixed z-10 bottom-0  bg-white  w-full  px-4 py-6 '>
+        <WaitingForDriver setWFD={setWFD}  />
       </div>
     </div>
   )
