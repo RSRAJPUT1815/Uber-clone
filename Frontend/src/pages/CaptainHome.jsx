@@ -1,7 +1,41 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
+import CaptainDetails from '../components/CaptainDetails';
+import RidePopup from '../components/RidePopup';
+import ConfirmRidePopup from '../components/ConfirmRidePopup';
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 const CaptainHome = () => {
+    const [RidePopups, setRidePopups] = useState(true);
+    const RidePopupRef = useRef(null)
+    const [ConfirmRidePopups, setConfirmRidePopups] = useState(false);
+    const ConfirmRidePopupRef = useRef(null)
+
+    useGSAP(function () {
+        if (RidePopups) {
+            gsap.to(RidePopupRef.current, {
+                transform: 'translateY(0%)'
+
+            });
+        } else {
+            gsap.to(RidePopupRef.current, {
+                transform: 'translateY(100%)'
+            });
+        }
+    }, [RidePopups]);
+    useGSAP(function () {
+        if (ConfirmRidePopups) {
+            gsap.to(ConfirmRidePopupRef.current, {
+                transform: 'translateY(0%)'
+
+            });
+        } else {
+            gsap.to(ConfirmRidePopupRef.current, {
+                transform: 'translateY(100%)'
+            });
+        }
+    }, [ConfirmRidePopups]);
     return (
         <>
             <div className='h-screen  overflow-hidden relative'>
@@ -15,33 +49,13 @@ const CaptainHome = () => {
                     <img src="uber-car-map.webp" alt="temp" className=' w-full ' />
                 </div>
                 <div className='h-2/5 p-4'>
-                    <div className='flex items-center justify-between'>
-                        <div className='flex justify-start items-center gap-4'>
-                            <img className='w-24 h-24 rounded-full object-cover ' src="images.jpg" alt="Driver" />
-                            <h4 className='text-lg font-medium'>RSKING</h4>
-                        </div>
-                        <div>
-                            <h4 className='text-xl font-semibold'>₹297.45</h4>
-                            <p className='text-sm  text-gray-400'>Earned</p>
-                        </div>
-                    </div>
-                    <div className='flex items-start bg-gray-100 p-3 mt-6 rounded-xl justify-center gap-5 '>
-                        <div className='text-center'>
-                            <i className=" text-3xl mb-2 font-thin ri-time-line"></i>
-                            <h5  className='text-lg font-semibold'>5.4</h5>
-                            <p className='text-sm text-gray-500'>Hours Online</p>
-                        </div>
-                        <div className='text-center'>
-                            <i className=" text-3xl mb-2 font-thin ri-speed-up-fill"></i>
-                            <h5  className='text-lg font-semibold'>5.4</h5>
-                            <p className='text-sm text-gray-500'>Hours Online</p>
-                        </div>
-                        <div className='text-center'>
-                            <i className=" text-3xl mb-2 font-thin ri-currency-fill"></i>
-                            <h5  className='text-lg font-semibold'>5.4</h5>
-                            <p className='text-sm text-gray-500'>Hours Online</p>
-                        </div>
-                    </div>
+                    <CaptainDetails />
+                </div>
+                <div ref={RidePopupRef} className='fixed z-10 translate-y-full bottom-0  bg-white  w-full  px-4 py-6 '>
+                    <RidePopup setRidePopups={setRidePopups} setConfirmRidePopups={setConfirmRidePopups} />
+                </div>
+                <div ref={ConfirmRidePopupRef} className='fixed z-10 translate-y-full bottom-0  bg-white  w-full  px-4 py-6 '>
+                    <ConfirmRidePopup setConfirmRidePopups={setConfirmRidePopups} />
                 </div>
             </div>
         </>

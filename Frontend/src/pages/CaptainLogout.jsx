@@ -18,7 +18,7 @@ const CaptainLogout = () => {
     })
     return (
         <div>
-            loguot hh
+            
         </div>
     )
 }
