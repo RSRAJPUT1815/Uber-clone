@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom';
 
-const ConfirmRidePopup = (props) => {
-    const [OTP, setOTP] = useState('');
-    const handleOTPChange = (e) => {
-        setOTP(e.target.value);
-    };
+const FinishRide = (props) => {
     return (
-        <div className='h-screen pt-12  '>
-            <h5 className='absolute top-16 right-4 text-3xl ' onClick={() => props.setConfirmRidePopups(false)} >
+        <div>
+            <h5 className='absolute top-4 right-4 text-3xl' onClick={() => props.setfinishRide(false)}>
                 <i className="ri-close-circle-line"></i>
             </h5>
-            <h3 className='text-2xl font-semibold text-black mb-5'>Confirm  Ride to start!</h3>
+            <h3 className='text-2xl font-semibold text-black mb-5'>Finish  Ride</h3>
             <div className='px-3 py-4  flex items-center justify-between gap-4 w-full mb-2 bg-gray-300 rounded-lg shadow-xl'>
                 <div className='flex items-center justify-between gap-4  mb-2 px-4 py-2'>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1XbzgSL8vMnq5il0g6oLXIff1Cnb_Aal__A&s" alt="UserImg" className='w-16 object-cover rounded-full' />
@@ -28,6 +24,7 @@ const ConfirmRidePopup = (props) => {
                             <i className="ri-map-pin-user-line"></i>
                         </h5>
                         <div>
+                        <h2 className='text-xl font-bold'>Pickup </h2>
                             <h4 className="text-md font-semibold text-black leading-tight">562/11-A</h4>
                             <p className="text-sm text-gray-600">Kankariya Talab , Ahmedabad</p>
                         </div>
@@ -38,6 +35,7 @@ const ConfirmRidePopup = (props) => {
                             <i className="ri-map-pin-line"></i>
                         </h5>
                         <div>
+                            <h2 className='text-xl font-bold'>Drop </h2>
                             <h4 className="text-md font-semibold text-black leading-tight">562/11-A</h4>
                             <p className="text-sm text-gray-600">Kankariya Talab , Ahmedabad</p>
                         </div>
@@ -47,28 +45,22 @@ const ConfirmRidePopup = (props) => {
                         <h5 className="text-2xl bg-[#eee] p-3 rounded-full">
                             <i className="ri-currency-line"></i>
                         </h5>
-                        <div className='flex justify-center items-center '>
+                        <div className='flex justify-center items-start flex-col '>
+                        <h2 className='text-xl font-bold'>Pay</h2>
                             <h4 className="text-3xl font-bold text-black "> ₹ 193.20</h4>
                         </div>
 
                     </div>
                 </div>
                 <div className='flex flex-col gap-4 w-full mt-4'>
-                    <form onSubmit={(e) => e.preventDefault()} className='flex flex-col gap-4'>
-                        <input value={OTP} onChange={handleOTPChange}   required type="Number" placeholder='Enter your 4 digit OTP' className='w-full border-none outline-none px-4 pl-7 text-xl font-semibold py-4 rounded-xl bg-[#e4e3e3]' />
-                        <Link to={"/captain-riding"} className='flex justify-center items-center bg-green-700 border-green-800 border text-white px-4 py-2 w-full rounded-md font-semibold text-lg '>
-                            Confirm
-                        </Link>
-                        <button className='bg-red-500 border border-red-600 text-white px-4 py-2 w-full rounded-md font-semibold text-lg ' onClick={() => props.setConfirmRidePopups(false)}>
-                            Cancel
+                        <button  className=' bg-green-700 border-green-800 border text-white px-4 py-2 w-full rounded-md font-semibold text-lg '>
+                            Finish Ride
                         </button>
-                    </form>
+                    
                 </div>
             </div>
-
-
         </div>
     )
 }
 
-export default ConfirmRidePopup
+export default FinishRide

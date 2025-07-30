@@ -50,10 +50,10 @@ const RidePopup = (props) => {
 
                     </div>
                 </div>
-                <button className='bg-green-700 text-white px-4 py-2 w-full rounded-md font-semibold text-lg ml-4' onClick={() => { props.setRidePopups(false), props.setConfirmRidePopups(true) }}>
+                <button className='bg-green-700 text-white px-4 py-2 w-full rounded-md font-semibold text-lg ' onClick={() => { props.setRidePopups(false), props.setConfirmRidePopups(true) }}>
                     Accept
                 </button>
-                <button className='bg-gray-500 text-white px-4 py-2 w-full rounded-md font-semibold text-lg ml-4' onClick={() => props.setRidePopups(false)}>
+                <button className='bg-gray-500 text-white px-4 py-2 w-full rounded-md font-semibold text-lg ' onClick={() => props.setRidePopups(false)}>
                     ignore
                 </button>
             </div>
